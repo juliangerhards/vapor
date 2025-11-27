@@ -697,6 +697,8 @@ extension ChannelPipeline {
             leftOverBytesStrategy: .forwardBytes
         ))
         handlers += [httpResEncoder, httpReqDecoder]
+
+        handlers.append(HTTP100ContinueHandler())
         
         /// Add pipelining support if configured.
         if configuration.supportPipelining {
